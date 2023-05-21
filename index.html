@@ -1,0 +1,226 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <title>TYPING SPEED TEST</title>
+        <meta name="author" content="Rithwik Amaraneni">
+        <meta name="description" content="Calculate your typing speed with our online typing speed calculator. Measure words per minute (WPM) and accuracy to improve your typing skills.">
+        <meta name="keywords" content="rithwik,rithwik amaraneni,rithwik003,amaraneni,rithwik vit,rithwik cse,typing speed calculator, typing speed test, typing speed tool, words per minute, WPM calculator, typing accuracy, improve typing skills, online typing test, rithwik typing speed,rithwik amaraneni typing speed">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
+        <link type="image/png" size="32x32" rel="icon" href="#">
+<style>
+    body{
+        background-color:rgb(76, 113, 119);
+    }
+    #message{
+        max-width:100%;
+        width:92%;
+        margin-left:4%;
+        margin-right:4%;
+        text-align:center;
+        height:30%;
+    }
+    #let{
+        font-size:28px;
+        
+        color:rgb(255, 255, 255);
+    }
+    #reset{
+        text-decoration: none;
+    }
+    #timer{
+        margin-left:40%;
+        margin-right:40%;
+        font-size:28px;
+        color:rgb(179, 211, 151);
+    }
+    #start,#r2{
+        border-radius:10px;
+        width:8%;
+        font-size:20px;
+        padding-top:10px;
+        padding-bottom:10px;
+        cursor:pointer;
+        color:black;
+        
+    }
+    #start{
+        margin-left:40%;
+    }
+    #hea{
+        text-align:center;
+        padding-top:10px;
+        padding-bottom:10px;
+    }
+    #b1{
+        font-size:30px;
+        text-decoration: underline;
+        text-align:center;
+        color:white;
+    }
+    #a1,#a2,#a3,#a4,#a5,#a6{
+        font-size:28px;
+        text-align: center;
+        color:white;
+    }
+    .res{
+        border-radius:20px;
+        border-color: black;
+    }
+
+    @media only screen and (max-width: 768px) {
+        #start,#r2{
+            border-radius:10px;
+            width:14%;
+            font-size:20px;
+            padding-top:10px;
+            padding-bottom:10px;
+           
+            
+            cursor:pointer;
+            color:black;
+           
+            text-align: center;
+        }
+        #start{
+            margin-left:35%;
+            padding-top:10px;
+            padding-bottom:10px;
+        }
+        #timer{
+            margin-left:27%;
+            margin-right:10%;
+            font-size:22px;
+            color:rgb(179, 211, 151);
+        }
+        #let{
+            font-size:20px;
+            color:rgb(255, 255, 255);
+        }
+        #hea{
+            text-align:center;
+            padding-top:10px;
+            padding-bottom:10px;
+            font-size:25px;
+        }
+    }
+    
+
+</style>
+</head>
+<body>
+
+    <h1 id="hea"><b><u>TYPING ⌨ SPEED TEST</u></b></h1>
+    <p id="l1"></p>
+    <p id="let"></p>
+    
+    <p><span id="timer">60 seconds remaining</span><br></p>
+    <br>
+    
+    <textarea id="message" name="message" style="border-radius:10px; font-size:20px; text-align: center;" placeholder="Enter the Text" required></textarea>
+    <br>
+    <br>
+    <button onclick="startTimer();" id="start">Start</button>
+    
+    &nbsp;&nbsp;
+    <button id="r2"><a style="color:black;" href="index.html" id="reset">Reset</a></button>
+    <br><br><br>
+    <div class="res">
+        <p id="b1"></p>
+        
+        <p id="a1"></p>
+        <p id="a2"></p>
+        <p id="a3"></p>
+        <p id="a4"></p>
+        <p id="a5"></p>
+        <p id="a6"></p>
+    </div>
+    <br>
+
+
+
+    <script>
+        
+        window.onload=function(){ document.getElementById('message').disabled=true;}
+        
+        const characters ='abcdefghijklmnopqrstuvwxyz';
+
+        function generateString(length) {
+            let result = '';
+            const charactersLength = characters.length;
+            for ( let i = 0; i < length; i++ ) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                if(i%5==0 && i!=0){
+                    result+=' ';
+                }
+            }
+            //document.getElementById("let").innerHTML = result;
+            return result;
+        }
+        var inp=generateString(400);
+        //console.log(generateString(200));
+        document.getElementById("let").innerHTML = inp;
+
+        var countdown;
+        var seconds = 60;
+
+    function startTimer() {
+        
+        countdown = setInterval(updateTimer, 1000);
+        document.getElementById('start').disabled=true;
+        document.getElementById('message').disabled=false;
+    }
+
+    function updateTimer() {
+        var timerElement = document.getElementById('timer');
+        seconds--;
+
+        if (seconds <= 0) {
+            timerElement.innerHTML = seconds + ' seconds remaining';
+            clearInterval(countdown);
+            //timerElement.innerHTML = 'Time up!';
+            myFunction();
+            cal();
+        } else {
+            timerElement.innerHTML = seconds + ' seconds remaining';
+        }
+    }
+
+    function myFunction() {
+        
+        document.getElementById('message').disabled=true;
+        document.getElementById('b1').innerHTML='REPORT'
+        //alert('Time up!');
+        
+    }
+    function cal(){
+        let a=0;
+        var z=document.getElementById('message').value;
+        for(let i=0;i<z.length;i++){
+            //if(z.substr(i,1)===inp.substr(i,1)){
+                var z1=z.charAt(i);
+                var z2=inp.charAt(i);
+                if(z1==z2){
+                    //document.getElementById('a1').innerHTML= inp.substr(i,1);
+                    a++;
+                }
+            //document.getElementById('a1').innerHTML= z1;
+            //document.getElementById('a2').innerHTML= z2;
+        }
+        var vz1=(z.length)-a;
+        var vz2=((z.length/5)-(vz1/5)).toFixed(2);
+        var vz3=((a/z.length)*100).toFixed(2);
+        if(z.length==0){
+            vz3=0;
+        }
+        document.getElementById('a1').innerHTML= 'Correct words = ' +Math.floor(a/5);
+        document.getElementById('a2').innerHTML= 'Correct characters = ' +a;
+        document.getElementById('a3').innerHTML= 'Incorrect words = ' +Math.round(vz1/5);
+        document.getElementById('a4').innerHTML= 'Incorrect characters = ' +vz1;
+        document.getElementById('a5').innerHTML= 'Accuracy = ' +vz3+'%';
+        document.getElementById('a6').innerHTML= 'Typing Speed = ' +vz2+' WPM';
+    }
+    </script>
+    
+</body>
+</html>
